@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:alpine
+    environment:
+       POSTGRES_USER: livedata
+       POSTGRES_PASSWORD: success1
+       POSTGRES_DB: composedata
+    ports:
+      - "5432:5432"
+
+  python-services:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres
